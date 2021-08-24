@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      BI X FE App Challenge
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+    <ion-button *ngIf="!apiInfo" color="primary" class="mainBtn" (click)="scanQRCode()">SCAN QR Code</ion-button>
+
+    <ng-container *ngIf="apiInfo && !fileUploadStatus">
+      <ion-button color="primary" class="mainBtn" (click)="checkServerStatus()">Check Server Status</ion-button>
+      <div *ngIf="statusResult">server: {{statusResult['status']}}</div>
+      <ion-button [disabled]="!statusResult || (statusResult && 'ok' !== statusResult['status'])" color="primary"
+                  class="mainBtn" (click)="takePhoto()">
+        take photo & upload it
+      </ion-button>
+    </ng-container>
+
+    <ng-container *ngIf="fileUploadStatus">
+      <div>{{fileUploadStatus}}</div>
+      <ion-img [src]="getUploadedImageUrl()" style="max-width: 512px"></ion-img>
+    </ng-container>
+
+  </div>
+</ion-content>

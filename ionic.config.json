@@ -1,0 +1,7 @@
+{
+  "name": "BI_X_FE",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
